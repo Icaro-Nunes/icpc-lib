@@ -65,12 +65,12 @@ struct STree {
 
 	// search for first ocurrence to the right of strt
 	// of a value greater than or equal to v
-  // REQUIRES TESTING ON STRT != 0
+  	// REQUIRES TESTING ON STRT != 0
 	int lower_boundr(int strt, T v) {
 		int i=treesize+strt;
 		T accum=nodes[i];
 
-		while(i>1) {
+		while(i>1 and !(accum >= v)) {
 			if(!(i&1) and op(accum, nodes[i+1])>=v) break;
 			if(!(i&1)) accum = op(accum, nodes[i+1]);
 			i>>=1;
