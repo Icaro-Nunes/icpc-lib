@@ -11,6 +11,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{sectsty}
 \usepackage{titlesec}
+\usepackage{outlines}
 
 \renewcommand\cftsecfont{\fontsize{8}{9}\bfseries}
 \renewcommand\cftsecpagefont{\fontsize{8}{9}\mdseries}
@@ -81,6 +82,31 @@
 
 \maketitle
 \vspace{-13ex}
+
+\title{Lembretes:}
+\begin{itemize}
+  \item Ler com cuidado
+  \item Observar se arrays/segs/etc estão com tamanho de acordo com as constraints dadas e calculadas
+  \item Checar se um grafo de entrada pode ter arestas repetidas
+  \item Revisar assumptions feitas
+  \item Observar casos base/edge
+\end{itemize}
+
+\title{Formulas:}
+\begin{outline}
+  \1 Expected value of geometric distribution (expected number of failed Bernoulli trials before the first success, where $p$ is the probability of a single success) = ${1-p}\over p$
+  \1 Sum of arithemtic sequence:
+    \2 $n\times{({a_1+a_n})\over{2}}$
+    \2 ${n\over2}\times{[2a_1 + (n-1)\times d]}$
+    \2 Where: $a_1 =$ first term, $d =$ common difference, $n =$ number of terms in the range
+  \1 Law of sines:
+    \2 $ {sin(A)\over{a}} = {sin(B)\over{b}} = {sin(C)\over{c}} $
+    \2 Where $x =$ length of side opposed to angle $X$
+  \1 Law of cosines:
+    \2 $ a^2 = b^2 + c^2 - 2bc\times{cos(A)} $
+    \2 Where $a =$ length of side opposed to angle $A$
+\end{outline}
+
 \tableofcontents
 \pagestyle{fancy}
 
