@@ -1,0 +1,28 @@
+[Data Structures]
+data-structure/mo.h	Mo's Algorithm
+data-structure/segtree/segtree.h	Iterative Segment Tree
+data-structure/union_find/union_find.h	Union-Find
+
+[Graph]
+graph/dijkstra.h	Dijkstra
+graph/toposort.h	Toposort
+graph/mst.h	Prim/Kruskal
+graph/floyd-warshall.h	Floyd-Warshall
+
+[Math]
+math/fft.h	FFT (recursive)
+math/cpa_fft.h	FFT (in-place)
+matrix/matmul.h	Matrix Multiplication
+
+[Number Theory]
+number-theory/find_divisors/find_divisors.h	Divisors
+number-theory/modular-inv.h	Fexp/Modular Inverse
+number-theory/gcd-lcm.h	Gcd/Lcm
+number-theory/sieve-factors.h	Sieve/Factors
+
+[Others]
+dp/kd.h	Kadane
+strings/zfunction.h	Z Function
+
+[Utils]
+tester.py	Tester

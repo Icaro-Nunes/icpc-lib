@@ -1,2 +1,7 @@
 build
-
+*.aux
+*.fdb_latexmk
+*.out
+*.fls
+*.log
+*.toc
