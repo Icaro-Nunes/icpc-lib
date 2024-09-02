@@ -19,6 +19,6 @@ T fexp(T x, T exp, const T MOD) {
 }
 
 template<typename T>
-T mod_inv(T x, const T MOD) {
-  return fexp(x, MOD-1, MOD);
+T inv(T x, const T MOD) {
+  return fexp(x, MOD-2, MOD);
 }
