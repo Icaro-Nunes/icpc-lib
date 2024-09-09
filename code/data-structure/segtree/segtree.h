@@ -32,7 +32,7 @@ struct STree {
 			items[i] = from[i];
 
 		for(int i=2*treesize-1; i>1; i--)
-			nodes[i>>1] = op(nodes[i>>1], nodes[i]);
+			nodes[i>>1] = op(nodes[i], nodes[i>>1]);
 	}
 
 	void update(int index, T value) {
@@ -48,15 +48,17 @@ struct STree {
 	}
 
 	T query(int l, int r) {
-		T res = op.neutral;
+		T resl = op.neutral;
+		T resr = op.neutral;
+		
 		r++;
 
 		for(l += treesize, r += treesize; l<r; l>>=1, r>>=1) {
-			if(l&1) res = op(res, nodes[l++]);
-			if(r&1) res = op(res, nodes[--r]);
+			if(l&1) resl = op(resl, nodes[l++]);
+			if(r&1) resr = op(nodes[--r], resr);
 		}
 
-		return res;
+		return op(resl, resr);
 	}
 
 	~STree() {
