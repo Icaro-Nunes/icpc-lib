@@ -19,7 +19,7 @@ struct SparseTable {
 			st[l].resize(n);
 
 			for(int i=0; i<n; i++)
-				st[l][i] = (i+cursor<n) ? op(st[l][i], st[l][i+cursor]) : st[l][i];
+				st[l][i] = (i+cursor<n) ? op(st[l-1][i], st[l-1][i+cursor]) : st[l-1][i];
 
 			cursor <<= 1;
 		}
