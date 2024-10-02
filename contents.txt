@@ -1,7 +1,8 @@
 [Data Structures]
-data-structure/mo.h	Mo's Algorithm
-data-structure/segtree/segtree.h	Iterative Segment Tree
 data-structure/union_find/union_find.h	Union-Find
+data-structure/segtree/segtree.h	Iterative Segment Tree
+data-structure/sparsetable-rmq.h	SparseTable/RMQ
+data-structure/mo.h	Mo's Algorithm
 
 [Graph]
 graph/dijkstra.h	Dijkstra
