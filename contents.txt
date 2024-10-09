@@ -15,6 +15,10 @@ math/fft.h	FFT (recursive)
 math/cpa_fft.h	FFT (in-place)
 matrix/matmul.h	Matrix Multiplication
 
+[Geometry]
+geometry/point.h	Point2D
+geometry/convex_hull.h	Convex Hull
+
 [Number Theory]
 number-theory/find_divisors/find_divisors.h	Divisors
 number-theory/modular-inv.h	Fexp/Modular Inverse
