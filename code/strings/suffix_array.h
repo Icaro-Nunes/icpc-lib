@@ -8,102 +8,45 @@ struct SuffixArray {
 	string v;
 
 	SuffixArray(const string& s) {
+		n=s.size()+1, v=s+'\0';
 		build(s);
 	}
 
 	// build suffix array of s
 	// complexity: O(n*logn)
-	void build(const string& s) {
-		n = s.size();
-		v = s; v+=char(0);
-		p = vector<int>(n+1);
+	void build() {
+		p = vector<int>(n);
+		vector<int> b(n),bp(n),bc(n),g(n),g_(n);
 
-		vector<int> b, bp, bc, g, g_;
-		b = bp = bc = g = g_ = p;
-
-		for(int i=0; i<=n; i++) p[i] = i;
+		for(int i=0; i<n; i++) p[i] = i;
 
 		auto cmp=[&](int a, int b) {
-			return v[a]<v[b];
+			return v[a] < v[b];
 		};
-		sort(begin(p), end(p), cmp);
+		sort(all(p), cmp);
 
-		g[p[0]] = 0, bc[0]=1;
-		for(int i=1, ct=0; i<=n; i++)
-			if(v[p[i]] == v[p[i-1]])
-				g[p[i]] = ct, bc[ct]++;
-			else
-				g[p[i]] = ++ct, bc[ct]=1;
+		g[p[0]]=0, bc[0]=1;
+		for(int i=1,ct=0; i<n; i++)
+			if(v[p[i]] == v[p[i-1]]) g[p[i]]=ct, bc[ct]++;
+			else g[p[i]]=++ct, bc[ct]=1;
 
-		for(int c=1; c<n; c<<=1) {
-			for(int i=0, sum=0; i<=n; i++) bp[i]=sum, sum+=bc[i];
-			for(int i=0; i<=n; i++) b[bp[g[(p[i]+c)%(n+1)]]++] = p[i];
-			p = b;
+		for(int c=1,k=0; c<n; c<<=1,k++) {
+			auto& gg = (k&1) ? g_ : g;
+			auto& gg_ = (k&1) ? g : g_;
 
-			for(int i=0, sum=0; i<=n; i++) bp[i]=sum, sum+=bc[i];
-			for(int i=0; i<=n; i++) b[bp[g[p[i]]]++] = p[i];
-			p = b;
+			for(int i=0,sum=0; i<n; i++) bp[i]=sum,sum+=bc[i],bc[i]=bp[i];
+			for(int i=0; i<n; i++) b[bc[gg[(p[i]+c)%n]]++] = p[i];
+			for(int i=0; i<n; i++) p[bp[gg[b[i]]]++] = b[i];
 
-			g_[p[0]] = 0, bc[0]=1;
-			for(int i=1,ct=0; i<=n; i++)
-				if(make_pair(g[p[i]], g[(p[i]+c)%(n+1)]) == make_pair(g[p[i-1]], g[(p[i-1]+c)%(n+1)]))
-					g_[p[i]] = ct, bc[ct]++;
+			gg_[p[0]]=0, bc[0]=1;
+			for(int i=1,ct=0; i<n; i++)
+				if(make_pair(gg[p[i]], gg[(p[i]+c)%n]) == make_pair(gg[p[i-1]], gg[(p[i-1]+c)%n]))
+					gg_[p[i]]=ct, bc[ct]++;
 				else
-					g_[p[i]] = ++ct, bc[ct]=1;
-			g = g_;
+					gg_[p[i]]=++ct, bc[ct]=1;
 		}
 	}
 
-	// check if suffix starting at p[b] is lexicographically
-	// greater than or equal to s
-	// complexity: O(|s|)
-	bool ge(const string& s, int b) {
-		for(int i=0; i<s.size(); i++)
-			if(v[(p[b]+i)%(n+1)] > s[i]) return true;
-			else if(v[(p[b]+i)%(n+1)] < s[i]) return false;
-		return true;
-	}
-
-	// check if suffix starting at p[b] is lexicographically
-	// greater than s
-	// complexity: O(|s|)
-	bool gt(const string& s, int b) {
-		for(int i=0; i<s.size(); i++)
-			if(v[(p[b]+i)%(n+1)] > s[i]) return true;
-			else if(v[(p[b]+i)%(n+1)] < s[i]) return false;
-		return false;
-	}
-
-
-	// counts occurrences of substring s
-	// complexity: O(|s|*logn)
-	int count(const string& s) {
-		int l=0, r=n, fgt=n+1, fge=n+1;
-
-		while(l<=r) {
-			int mid = l+(r-l)/2;
-			if(ge(s, mid))
-				r=mid-1, fge=mid;
-			else
-				l=mid+1;
-		}
-
-		l=fge, r=n;
-		while(l<=r) {
-			int mid = l+(r-l)/2;
-			if(gt(s, mid))
-				r=mid-1, fgt=mid;
-			else
-				l=mid+1;
-		}
-
-		return fgt-fge;
-	}
-
-
-	// to find the first occurence of a substring
-	// it is necessary to have a Sparse Table or
-	// any RMQ DS
 };
 
 
