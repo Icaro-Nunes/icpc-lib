@@ -1,15 +1,18 @@
+#include <utility>
 #include <string>
-#include <pair>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
 struct SuffixArray {
 	int n;
-	vector<int> p;
+	vector<int> p, lcp;
 	string v;
 
 	SuffixArray(const string& s) {
 		n=s.size()+1, v=s+'\0';
-		build(s);
+		build();
+		build_lcp();
 	}
 
 	// build suffix array of s
@@ -23,7 +26,7 @@ struct SuffixArray {
 		auto cmp=[&](int a, int b) {
 			return v[a] < v[b];
 		};
-		sort(all(p), cmp);
+		sort(begin(p), end(p), cmp);
 
 		g[p[0]]=0, bc[0]=1;
 		for(int i=1,ct=0; i<n; i++)
@@ -44,6 +47,20 @@ struct SuffixArray {
 					gg_[p[i]]=ct, bc[ct]++;
 				else
 					gg_[p[i]]=++ct, bc[ct]=1;
+		}
+	}
+
+	void build_lcp() {
+		lcp = vector<int>(n);
+		vector<int> pos(n);
+		for(int i=0; i<n; i++) pos[p[i]] = i;
+		int k=0;
+		for(int i=0, len=n-1; len>0; i++,len--,k=max(0,k-1)) {
+			int prv=p[pos[i]-1];
+			while(k<len)
+				if(v[i+k] == v[(prv+k)%n]) k++;
+				else break;
+			lcp[pos[i]] = k;
 		}
 	}
 
