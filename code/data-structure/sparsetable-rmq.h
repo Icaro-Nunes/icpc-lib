@@ -45,12 +45,13 @@ struct SparseTable {
 // - works for Operations that allow juxtaposition,
 //   like min, max and gcd
 template<typename T, class Op>
-struct RMQ {
+struct RMQ: SparseTable<T,Op> {
+	RMQ(const vector<T>& f): SparseTable<T,Op> (f) {}
+
 	T query(int l, int r) override {
 		int len = r-l+1;
 		int log = 32 - __builtin_clz(len) - 1;
-		T res = this->st[log][l];
-		res = this->op(res, st[log][r-(1 << log)+1]);
+		res = this->op(this->st[log][l], this->st[log][r-(1 << log)+1]);
 		return res;
 	}
 };
