@@ -63,7 +63,7 @@ struct STree {
 		i = i>>1;
 
 		while(i>0) {
-			nd[i] = op(nd[i>>1], nd[(i>>1)+1]);
+			nd[i] = op(nd[i<<1], nd[(i<<1)+1]);
 			i>>=1;
 		}
 	}
