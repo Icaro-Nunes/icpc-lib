@@ -1,6 +1,7 @@
 #include <vector>
 #include <string>
 
+// Hash abda49
 std::vector<int> zstring(const std::string& s) {
 	std::vector<int> z(s.size(), 0);
 
@@ -36,6 +37,7 @@ std::vector<int> zstring(const std::string& s) {
 	return z;
 }
 
+// Hash 756625
 std::vector<int> match(const std::string& s, const std::string& pattern) {
 	std::string pt = pattern + "$" + s;
 	std::vector<int> z = zstring(pt);

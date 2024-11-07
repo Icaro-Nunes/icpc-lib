@@ -1,6 +1,7 @@
 #include <vector>
 #include <optional>
 
+// Hash ef87f6
 // segment tree - 0 indexed !
 // space: 4n
 // time:

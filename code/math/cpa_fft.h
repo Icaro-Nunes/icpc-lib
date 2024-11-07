@@ -2,6 +2,7 @@ using ld = long double;
 using cd = complex<ld>;
 const ld PI = acos(-1);
 
+// Hash 7436b9
 int reverse(int num, int lg_n) {
     int res = 0;
     for (int i = 0; i < lg_n; i++) {
@@ -11,6 +12,7 @@ int reverse(int num, int lg_n) {
     return res;
 }
 
+// Hash 6a7da6
 void fft(vector<cd> & a, bool invert) {
     int n = a.size();
     int lg_n = 0;

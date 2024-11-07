@@ -4,6 +4,7 @@ using namespace std;
 const int BLKSIZE=1e2;
 
 
+// Hash 319b09
 // OPTIONAL
 inline int64_t hilbertOrder(int x, int y, int pow, int rotate) {
 	if (pow == 0) {
@@ -27,6 +28,7 @@ inline int64_t hilbertOrder(int x, int y, int pow, int rotate) {
 }
 //-------------
 
+// Hash d56199
 struct Query {
 	int l, r, idx;
 	int64_t ord;

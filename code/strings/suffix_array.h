@@ -4,6 +4,7 @@
 #include <algorithm>
 using namespace std;
 
+// Hash dc9083
 struct SuffixArray {
 	int n;
 	vector<int> p, lcp;
