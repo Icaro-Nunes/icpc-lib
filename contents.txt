@@ -25,9 +25,12 @@ number-theory/modular-inv.h	Fexp/Modular Inverse
 number-theory/gcd-lcm.h	Gcd/Lcm
 number-theory/sieve-factors.h	Sieve/Factors
 
+[Strings]
+strings/zfunction.h	Z Function
+strings/suffix_array.h	Suffix Array
+
 [Others]
 dp/kd.h	Kadane
-strings/zfunction.h	Z Function
 
 [Utils]
 tester.py	Tester
