@@ -28,6 +28,7 @@ number-theory/sieve-factors.h	Sieve/Factors
 [Strings]
 strings/zfunction.h	Z Function
 strings/suffix_array.h	Suffix Array
+strings/manacher.h	Manacher
 
 [Others]
 dp/kd.h	Kadane
